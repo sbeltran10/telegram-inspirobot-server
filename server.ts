@@ -48,16 +48,16 @@ app.use((req, res, next) => {
 
 app.post(`/${token}`, async (req, res) => {
   const update: Update = req.body;
-  const quoteUrl = await getQuote();
-  console.log(update)
-  if (update.inline_query) {
-    await answerInlineQuery(update.inline_query.id, quoteUrl);
-  } else {
-    try {
+  try {
+    if (update.inline_query) {
+      const quoteUrl = await getQuote();
+      await answerInlineQuery(update.inline_query.id, quoteUrl);
+    } else if (update.message.text === "inspireme") {
+      const quoteUrl = await getQuote();
       await sendPhoto(update.message.chat.id, quoteUrl);
-    } catch (err) {
-      console.log(err)
     }
+  } catch (err) {
+    console.log(err)
   }
   res.send();
 });
