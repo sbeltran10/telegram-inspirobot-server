@@ -42,10 +42,11 @@ app.use((req, res, next) => {
 });
 
 app.post(`/${token}`, async (req, res) => {
-  const update: Update = req.body;
-  console.log(update.message.text);
+  const update: Update = req.body;  
   const quoteUrl = await getQuote();
-  await sendPhoto(update.message.chat.id, "https://generated.inspirobot.me/a/YKemzxqRJr.jpg");
+  console.log(update.message.chat)
+  console.log(quoteUrl)
+  await sendPhoto(update.message.chat.id, quoteUrl);
   res.send();
 });
 
