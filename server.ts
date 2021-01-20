@@ -49,8 +49,9 @@ app.use((req, res, next) => {
 app.post(`/${token}`, async (req, res) => {
   const update: Update = req.body;
   const quoteUrl = await getQuote();
+  console.log(update)
   if (update.inline_query) {
-    await answerInlineQuery(update.inline_query.id, quoteUrl)
+    await answerInlineQuery(update.inline_query.id, quoteUrl);
   } else {
     try {
       await sendPhoto(update.message.chat.id, quoteUrl);

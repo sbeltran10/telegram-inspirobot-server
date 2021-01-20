@@ -36,7 +36,8 @@ export const answerInlineQuery = async (inlineQueryId: string, photo: string) =>
       results: [{
         type: "photo",
         id: "unique-photo",
-        photo_url: photo
+        photo_url: photo,
+        thumb_url: photo
       }]
     }),
     headers: {
