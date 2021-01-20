@@ -42,11 +42,14 @@ app.use((req, res, next) => {
 });
 
 app.post(`/${token}`, async (req, res) => {
-  const update: Update = req.body;  
+  const update: Update = req.body;
   const quoteUrl = await getQuote();
-  console.log(update.message.chat)
-  console.log(quoteUrl)
-  await sendPhoto(update.message.chat.id, quoteUrl);
+  try {
+    await sendPhoto(update.message.chat.id, quoteUrl);
+  } catch (err) {
+    console.log(err)
+  }
+
   res.send();
 });
 
