@@ -12,7 +12,10 @@ try {
 
 
 const app = opine();
-
+app.use((req, res, next) => {
+  console.log("%s %s %s", req.method, req.url, req.path);
+  next();
+});
 app.use(opineCors());
 app.use(json());
 
