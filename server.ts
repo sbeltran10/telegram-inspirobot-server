@@ -25,9 +25,14 @@ interface Message {
   chat: Chat
 };
 
+interface InlineQuery {
+  id: string
+};
+
 interface Update {
   update_id: number,
-  message: Message
+  message: Message,
+  inline_query: InlineQuery
 };
 
 const token = Deno.env.get('TELEGRAM_TOKEN');
@@ -44,12 +49,15 @@ app.use((req, res, next) => {
 app.post(`/${token}`, async (req, res) => {
   const update: Update = req.body;
   const quoteUrl = await getQuote();
-  try {
-    await sendPhoto(update.message.chat.id, quoteUrl);
-  } catch (err) {
-    console.log(err)
-  }
+  if (update.inline_query) {
 
+  } else {
+    try {
+      await sendPhoto(update.message.chat.id, quoteUrl);
+    } catch (err) {
+      console.log(err)
+    }
+  }
   res.send();
 });
 

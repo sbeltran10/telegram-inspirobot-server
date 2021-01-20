@@ -27,3 +27,20 @@ export const sendPhoto = async (chatId: number, photo: string) => {
     }
   });
 }
+
+export const answerInlineQuery = async (inlineQueryId: string, photo: string) => {
+  return fetch(`${BASE_TELEGRAM_URL}/answerInlineQuery`, {
+    method: "POST",
+    body: JSON.stringify({
+      inline_query_id: inlineQueryId,
+      results: [{
+        type: "photo",
+        id: "unique-photo",
+        photo_url: photo
+      }]
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
