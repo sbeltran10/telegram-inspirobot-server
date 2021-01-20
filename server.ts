@@ -1,7 +1,7 @@
 import "https://deno.land/x/dotenv/load.ts";
 import { opine, opineCors, json } from "./deps.ts";
 import { getQuote } from "./inspirobot-api.ts";
-import { registerInspireWebhook, sendPhoto } from "./telegram-api.ts";
+import { registerInspireWebhook, sendPhoto, answerInlineQuery } from "./telegram-api.ts";
 
 try {
   const registerResponse = await registerInspireWebhook();
@@ -50,7 +50,7 @@ app.post(`/${token}`, async (req, res) => {
   const update: Update = req.body;
   const quoteUrl = await getQuote();
   if (update.inline_query) {
-
+    await answerInlineQuery(update.inline_query.id, quoteUrl)
   } else {
     try {
       await sendPhoto(update.message.chat.id, quoteUrl);
