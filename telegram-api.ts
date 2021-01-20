@@ -1,4 +1,5 @@
 // https://api.telegram.org/bot<token>/METHOD_NAME
+import { v4 } from "./deps.ts";
 const token = Deno.env.get("TELEGRAM_TOKEN");
 const BASE_TELEGRAM_URL = `https://api.telegram.org/bot${token}`
 
@@ -35,7 +36,7 @@ export const answerInlineQuery = async (inlineQueryId: string, photo: string) =>
       inline_query_id: inlineQueryId,
       results: [{
         type: "photo",
-        id: photo,
+        id: v4.generate(),
         photo_url: photo,
         thumb_url: photo
       }]
