@@ -5,7 +5,7 @@ import { registerInspireWebhook, sendPhoto } from "./telegram-api.ts";
 
 try {
   const registerResponse = await registerInspireWebhook();
-  console.log(registerResponse)
+  console.log(await registerResponse.json())
 } catch (err) {
   console.log(err)
 }

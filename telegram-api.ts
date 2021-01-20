@@ -8,7 +8,10 @@ export const registerInspireWebhook = () => {
     method: "POST",
     body: JSON.stringify({
       url: `${Deno.env.get("SERVER_BASE_URL")}/${token}`
-    })
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   });
 }
 
@@ -18,6 +21,9 @@ export const sendPhoto = async (chatId: number, photo: string) => {
     body: JSON.stringify({
       chat_id: chatId,
       photo
-    })
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   });
 }
