@@ -45,5 +45,7 @@ app.post(`/${token}/inspireme`, async (req, res) => {
   res.send();
 });
 
-console.info("Web server listening on port 80");
-app.listen(`${Deno.env.get('PORT') || 80}`);
+const port = `${Deno.env.get('PORT') || 80}`;
+
+console.info(`Web server listening on port ${port}`);
+app.listen(port);
