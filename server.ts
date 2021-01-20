@@ -33,7 +33,7 @@ interface Update {
 
 const token = Deno.env.get('TELEGRAM_TOKEN');
 
-app.get(`/`, (req, res) => {  
+app.get(`/`, (req, res) => {
   res.send('Health check');
 });
 
@@ -45,7 +45,5 @@ app.post(`/${token}/inspireme`, async (req, res) => {
   res.send();
 });
 
-const port = `${Deno.env.get('PORT') || 80}`;
-
-console.info(`Web server listening on port ${port}`);
-app.listen(port);
+console.info(`Web server listening on port 8080`);
+app.listen(8080);
