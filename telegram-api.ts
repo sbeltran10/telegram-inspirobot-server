@@ -16,7 +16,7 @@ export const registerInspireWebhook = () => {
 }
 
 export const sendPhoto = async (chatId: number, photo: string) => {
-  return fetch(`${BASE_TELEGRAM_URL}/${token}/sendPhoto`, {
+  return fetch(`${BASE_TELEGRAM_URL}/sendPhoto`, {
     method: "POST",
     body: JSON.stringify({
       chat_id: chatId,
