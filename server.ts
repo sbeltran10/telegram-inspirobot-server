@@ -52,7 +52,7 @@ app.post(`/${token}`, async (req, res) => {
     if (update.inline_query) {
       const quoteUrl = await getQuote();
       await answerInlineQuery(update.inline_query.id, quoteUrl);
-    } else if (update.message.text === "inspireme") {
+    } else if (update.message.text === "/inspireme") {
       const quoteUrl = await getQuote();
       await sendPhoto(update.message.chat.id, quoteUrl);
     }
