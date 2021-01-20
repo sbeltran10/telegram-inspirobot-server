@@ -12,10 +12,6 @@ try {
 
 
 const app = opine();
-app.use((req, res, next) => {
-  console.log("%s %s %s", req.method, req.url, req.path);
-  next();
-});
 app.use(opineCors());
 app.use(json());
 
@@ -40,7 +36,12 @@ app.get(`/`, (req, res) => {
   res.send('Health check');
 });
 
-app.post(`/${token}/inspireme`, async (req, res) => {
+app.use((req, res, next) => {
+  console.log("%s %s %s", req.method, req.url, req.path);
+  next();
+});
+
+app.post(`/${token}`, async (req, res) => {
   const update: Update = req.body;
   console.log(update.message.text);
   const quoteUrl = await getQuote();

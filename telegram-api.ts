@@ -7,7 +7,7 @@ export const registerInspireWebhook = () => {
   return fetch(`${BASE_TELEGRAM_URL}/setWebhook`, {
     method: "POST",
     body: JSON.stringify({
-      url: `${Deno.env.get("SERVER_BASE_URL")}/${token}/inspireme`
+      url: `${Deno.env.get("SERVER_BASE_URL")}/${token}`
     })
   });
 }
